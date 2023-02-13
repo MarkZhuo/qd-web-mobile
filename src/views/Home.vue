@@ -83,6 +83,15 @@ onMounted(() => {
   soonmanager2Sync = ssp.registerPlugin(Soonmanager2SyncPlugin, 'soonmanager2Sync')
   ssp.setModelDracoDecoderPath('/draco/')
   soonmanager2Sync.setPath('/soonspace')
+  soonmanager2Sync.fetchMetaData().then((metaData) => {
+    console.log(metaData, 'metaData')
+  })
+  soonmanager2Sync.fetchPropertiesData().then((propertiesData) => {
+    console.log(propertiesData, 'propertiesData')
+  })
+  soonmanager2Sync.fetchTreeData().then((treeData) => {
+    console.log(treeData, 'treeData')
+  })
   /**
    * 加载场景
    */
