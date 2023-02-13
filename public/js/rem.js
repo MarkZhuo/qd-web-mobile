@@ -17,6 +17,8 @@
         docEl.style.fontSize = 100 * (clientWidth / 1536) + 'px'
       } else if (clientWidth < 768) {
         docEl.style.fontSize = 100 * (clientWidth / 750) + 'px'
+      } else if (clientWidth < 750 && clientWidth >= 350) {
+        docEl.style.fontSize = 100 * (clientWidth / 350) + 'px'
       }
     }
   if (!doc.addEventListener) return
