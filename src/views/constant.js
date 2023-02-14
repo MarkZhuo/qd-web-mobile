@@ -19,15 +19,15 @@ export const Navigations = [
     areas: [
       {
         id: '2-1',
-        name: 'A出入口',
-      },
-      {
-        id: '2-2',
         name: 'D出入口',
       },
       {
-        id: '2-3',
+        id: '2-2',
         name: 'C出入口',
+      },
+      {
+        id: '2-3',
+        name: 'A出入口',
       },
     ],
   },

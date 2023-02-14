@@ -381,7 +381,163 @@ function handleSelectPosition() {
   ssp.clearTopology()
 }
 
-function handleControlNav() {}
+function handleControlNav() {
+  showTooltip.value = true
+  showDetail.value = true
+  isPause.value = true
+  isResume.value = false
+  isPatrol.value = false
+  let path = {}
+  const options = {
+    flyToStartPoint: true,
+    eyeHeight: 1.7,
+    naviSpeed: 0.003,
+    rotateSpeed: 0.5,
+  }
+  path = topologies.value
+  patrolControls.value.start(
+    // path
+    path,
+    // options
+    {
+      ...options,
+      onUpdate: (realTimePosition, realTimeRotation, nextNode, nextDistance) => {
+        // console.log(nextNode)
+        // console.log(nextDistance)
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
+          guideDetail.value = ''
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
+          guideDetail.value = ''
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
+          guideDetail.value = ''
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node10') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node11') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node12') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
+          markImg.value = '/images/forward.png'
+        }
+      },
+      onProgress: (params) => {
+        // console.log(params)
+        step.value = params.percent - patrol.percent
+        patrol.patrolled = params.patrolled
+        patrol.percent = params.percent
+        patrol.total = params.total
+        sliderValue.value = patrol.percent
+      },
+      onEnd: () => {
+        message.info('导航结束！')
+        patrolControls.value.stop()
+        sliderValue.value = 0
+        showTooltip.value = false
+        showDetail.value = false
+        isPause.value = false
+        isResume.value = false
+        isPatrol.value = true
+        if (selectAreaId.value === '1-1') {
+          ssp.setCameraViewpoint({
+            position: {
+              x: 145.16795460335464,
+              y: -7.22705417305863,
+              z: -16.62881584338346,
+            },
+            target: {
+              x: 126.3624828116591,
+              y: -13.25869337658246,
+              z: -14.258049285671024,
+            },
+          })
+        }
+        if (selectAreaId.value === '2-1') {
+          ssp.setCameraViewpoint({
+            position: {
+              x: 121.55973529311572,
+              y: -13.064799292945526,
+              z: -5.675493261625442,
+            },
+            target: {
+              x: 122.04494405116866,
+              y: -13.125915014003327,
+              z: -5.753144619419772,
+            },
+          })
+        }
+      },
+    },
+  )
+}
 
 function handlePauseNav() {
   isPause.value = false
@@ -631,7 +787,12 @@ function handleUpdateSliderValue(val) {
             --n-handle-color: #39a6ff !important;
             .icon-hangren {
               color: #ffffff;
+              font-size: 12px;
             }
+          }
+          :deep(.n-icon-wrapper) {
+            box-shadow: 0px 2px 4px 0px rgba(79, 121, 168, 0.5) !important;
+            border: 1px solid #ffffff !important;
           }
         }
         .controller {
