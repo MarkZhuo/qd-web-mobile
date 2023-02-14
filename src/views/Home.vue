@@ -39,11 +39,14 @@
         }"
         :options="options"
         @sceneReady="sceneReady"
+        @modelClick="handleModelClick"
       />
     </div>
     <div class="guide-container" v-show="showControlMode">
       <div class="content" v-show="showDetail">
-        <div class="guide-mark"></div>
+        <div class="guide-mark">
+          <img :src="markImg" />
+        </div>
         <div class="guide-info">
           <div class="detail">直行</div>
           <div class="detail">{{ guideDetail }}</div>
@@ -52,9 +55,9 @@
     </div>
     <div class="control-container" v-show="showControlMode">
       <div class="content">
-        <div class="position-info" @click="showControlMode = false">
+        <div class="position-info" @click="handleSelectPosition">
           <span class="icon-position"></span>
-          <span class="position">{{ '站厅二号口' }}</span>
+          <span class="position">{{ selectArea?.name }}</span>
           <span class="icon-arrow"></span>
         </div>
         <div class="control-area">
@@ -65,6 +68,7 @@
               :step="step"
               :show-tooltip="showTooltip"
               :format-tooltip="formatTooltip"
+              @update:value="handleUpdateSliderValue"
             />
           </div>
           <div class="controller">
@@ -122,11 +126,11 @@ let soonmanager2Sync = null
 
 const message = useMessage()
 const sliderValue = ref(0)
-const step = ref(0)
+const step = ref(0.0004)
 const showControlMode = ref(false)
 const selectArea = ref(null)
 const selectAreaId = ref('')
-const topologies = ref([])
+const topologies = ref(null)
 const patrolControls = ref(null)
 const isPatrol = ref(true)
 const isResume = ref(false)
@@ -139,25 +143,20 @@ const patrol = reactive({
 const patrolInterval = 10
 const showTooltip = ref(false)
 const formatTooltip = (value) => {
-  return `${parseInt(value * patrol.total) + 'm'} / ${parseInt(
+  return `${parseInt(patrol.total) - parseInt(value * patrol.total) + 'm'} / ${parseInt(
     (parseInt(patrol.total) - parseInt(patrol.patrolled)) / 1.2,
   )}秒`
 }
 const guideDetail = ref('')
 const showDetail = ref(false)
+const markImg = ref('/images/forward.png')
 
 onMounted(() => {
   ssp = Sspx.get('qdSsp')
   soonmanager2Sync = ssp.registerPlugin(Soonmanager2SyncPlugin, 'soonmanager2Sync')
   ssp.setModelDracoDecoderPath('/draco/')
   soonmanager2Sync.setPath('/soonspace')
-  soonmanager2Sync.getTopologies().then((e) => {
-    e.splice(8, 9).map((t) => {
-      ssp.createTopology(t)
-      topologies.value.push(ssp.getObjectById(t.id))
-    })
-    patrolControls.value = ssp.registerPlugin(PatrolControlsPlugin, 'patrolControls')
-  })
+  patrolControls.value = ssp.registerPlugin(PatrolControlsPlugin, 'patrolControls')
   /**
    * 加载场景
    */
@@ -174,12 +173,18 @@ onMounted(() => {
         z: -5.152366659103915,
       },
     })
-    console.log('场景对象加载完成')
+    ssp.removeObjectById('4XCL3WN7HF4V')
+    ssp.removeObjectById('4XCL3WN7HF4W')
+    message.success('场景对象加载完成')
   })
 })
 
 function sceneReady(ssp) {
   Sspx.add('qdSsp', ssp)
+}
+
+function handleModelClick(params) {
+  console.log(params)
 }
 
 function handleSelectArea(item) {
@@ -191,7 +196,29 @@ function handleShowNav() {
   if (!selectArea.value) {
     return message.warning('请选择室内导航区域！')
   }
+  soonmanager2Sync.getTopologies().then((e) => {
+    if (selectAreaId.value === '1-1') {
+      ssp.createTopology(e[9])
+      topologies.value = ssp.getObjectById(e[9].id)
+    }
+    if (selectAreaId.value === '2-1') {
+      ssp.createTopology(e[8])
+      topologies.value = ssp.getObjectById(e[8].id)
+    }
+  })
   showControlMode.value = true
+}
+
+function handleSelectPosition() {
+  showControlMode.value = false
+  showTooltip.value = false
+  showDetail.value = false
+  isPause.value = false
+  isResume.value = false
+  isPatrol.value = true
+  sliderValue.value = 0
+  patrolControls.value.stop()
+  ssp.clearTopology()
 }
 
 function handleControlNav() {
@@ -203,16 +230,11 @@ function handleControlNav() {
   let path = {}
   const options = {
     flyToStartPoint: true,
-    eyeHeight: 1,
-    naviSpeed: 0.01,
-    rotateSpeed: 0.3,
+    eyeHeight: 1.7,
+    naviSpeed: 0.003,
+    rotateSpeed: 0.5,
   }
-  if (selectAreaId.value === '1-1') {
-    path = topologies.value[1]
-  }
-  if (selectAreaId.value === '2-1') {
-    path = topologies.value[0]
-  }
+  path = topologies.value
   patrolControls.value.start(
     // path
     path,
@@ -224,70 +246,92 @@ function handleControlNav() {
         // console.log(nextDistance)
         if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
           guideDetail.value = ''
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
           guideDetail.value = ''
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
           guideDetail.value = ''
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '1-1' && nextNode.name === 'node12') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
           guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
           guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
           guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
+          markImg.value = '/images/forward.png'
         }
       },
       onProgress: (params) => {
-        console.log(params)
+        // console.log(params)
+        step.value = params.percent - patrol.percent
         patrol.patrolled = params.patrolled
         patrol.percent = params.percent
         patrol.total = params.total
@@ -327,6 +371,10 @@ function handleForward() {
 
 function handleBack() {
   patrolControls.value.setProgress(patrol.percent - patrolInterval / patrol.total)
+}
+
+function handleUpdateSliderValue(val) {
+  patrolControls.value.setProgress(val)
 }
 </script>
 
@@ -448,7 +496,14 @@ function handleBack() {
       border-radius: 13px;
       display: flex;
       .guide-mark {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 60px;
+        img {
+          width: 40px;
+          height: 50px;
+        }
       }
       .guide-info {
         width: calc(100% - 60px);
@@ -528,6 +583,9 @@ function handleBack() {
             --n-rail-color: #dde5f0 !important;
             --n-rail-height: 9px !important;
             --n-fill-color: #38a5ff !important;
+            --n-fill-color-hover: #38a5ff !important;
+            --n-rail-color-hover: #dde5f0 !important;
+            --n-handle-color: #39a6ff !important;
           }
         }
         .controller {
