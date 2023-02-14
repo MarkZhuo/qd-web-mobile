@@ -69,7 +69,13 @@
               :show-tooltip="showTooltip"
               :format-tooltip="formatTooltip"
               @update:value="handleUpdateSliderValue"
-            />
+            >
+              <template #thumb>
+                <n-icon-wrapper :size="20" :border-radius="12">
+                  <i class="iconfont icon-hangren"></i>
+                </n-icon-wrapper>
+              </template>
+            </n-slider>
           </div>
           <div class="controller">
             <n-space justify="space-around">
@@ -94,7 +100,7 @@ export default {
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { NSlider, NSpace, NButton, NSelect, useMessage } from 'naive-ui'
+import { NSlider, NSpace, NButton, NSelect, NIconWrapper, useMessage } from 'naive-ui'
 import Sspx from '@soonspacejs/plugin-sspx'
 import Soonmanager2SyncPlugin from '@soonspacejs/plugin-soonmanager2-sync'
 import PatrolControlsPlugin from '@soonspacejs/plugin-patrol-controls'
@@ -586,6 +592,9 @@ function handleUpdateSliderValue(val) {
             --n-fill-color-hover: #38a5ff !important;
             --n-rail-color-hover: #dde5f0 !important;
             --n-handle-color: #39a6ff !important;
+            .icon-hangren {
+              color: #ffffff;
+            }
           }
         }
         .controller {

@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "34094128",
+      "name": "people",
+      "font_class": "hangren",
+      "unicode": "e783",
+      "unicode_decimal": 59267
+    },
+    {
+      "icon_id": "34080705",
+      "name": "front",
+      "font_class": "front",
+      "unicode": "e77f",
+      "unicode_decimal": 59263
+    },
+    {
+      "icon_id": "34080706",
+      "name": "pause",
+      "font_class": "pause1",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    },
+    {
+      "icon_id": "34080309",
+      "name": "select",
+      "font_class": "select",
+      "unicode": "e77a",
+      "unicode_decimal": 59258
+    },
+    {
+      "icon_id": "34080310",
+      "name": "start",
+      "font_class": "start",
+      "unicode": "e77b",
+      "unicode_decimal": 59259
+    },
+    {
+      "icon_id": "34080311",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
+      "icon_id": "34080312",
+      "name": "more",
+      "font_class": "more",
+      "unicode": "e77d",
+      "unicode_decimal": 59261
+    },
+    {
+      "icon_id": "34080313",
+      "name": "location",
+      "font_class": "location",
+      "unicode": "e77e",
+      "unicode_decimal": 59262
+    },
+    {
+      "icon_id": "34080315",
+      "name": "pulldown",
+      "font_class": "pulldown",
+      "unicode": "e780",
+      "unicode_decimal": 59264
+    },
+    {
+      "icon_id": "34080316",
+      "name": "pause",
+      "font_class": "pause",
+      "unicode": "e781",
+      "unicode_decimal": 59265
+    },
+    {
       "icon_id": "33480043",
       "name": "qr-code",
       "font_class": "qr_code",
