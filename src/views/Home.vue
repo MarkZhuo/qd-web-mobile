@@ -21,7 +21,8 @@
           :key="v.id"
           @click="handleSelectArea(v)"
         >
-          {{ v.name }}
+          <div class="components-area-name">{{ v.name }}</div>
+          <div class="components-area-checkbox" :class="{ bg: selectAreaId === v?.id }"></div>
         </div>
       </div>
       <div class="start-btn">
@@ -100,7 +101,7 @@ export default {
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { NSlider, NSpace, NButton, NSelect, NIconWrapper, useMessage } from 'naive-ui'
+import { NSlider, NSpace, NButton, NSelect, NIconWrapper, NCheckbox, useMessage } from 'naive-ui'
 import Sspx from '@soonspacejs/plugin-sspx'
 import Soonmanager2SyncPlugin from '@soonspacejs/plugin-soonmanager2-sync'
 import PatrolControlsPlugin from '@soonspacejs/plugin-patrol-controls'
@@ -149,9 +150,7 @@ const patrol = reactive({
 const patrolInterval = 10
 const showTooltip = ref(false)
 const formatTooltip = (value) => {
-  return `${parseInt(patrol.total) - parseInt(value * patrol.total) + 'm'} / ${parseInt(
-    (parseInt(patrol.total) - parseInt(patrol.patrolled)) / 1.2,
-  )}秒`
+  return `${parseInt(patrol.total) - parseInt(value * patrol.total) + 'm'}`
 }
 const guideDetail = ref('')
 const showDetail = ref(false)
@@ -169,19 +168,18 @@ onMounted(() => {
   soonmanager2Sync.loadScene().then(async () => {
     ssp.setCameraViewpoint({
       position: {
-        x: 145.43135804931595,
-        y: -7.999194502021944,
-        z: -5.210434395291186,
+        x: 225.74229823720415,
+        y: 60.87413563881296,
+        z: 65.89712489392214,
       },
       target: {
-        x: 122.2770000025121,
-        y: -15.761072591765675,
-        z: -5.152366659103915,
+        x: 123.3114607041962,
+        y: -17.744408502626086,
+        z: -4.442003782465552,
       },
     })
     ssp.removeObjectById('4XCL3WN7HF4V')
     ssp.removeObjectById('4XCL3WN7HF4W')
-    message.success('场景对象加载完成')
   })
 })
 
@@ -196,12 +194,6 @@ function handleModelClick(params) {
 function handleSelectArea(item) {
   selectArea.value = item
   selectAreaId.value = item.id
-}
-
-function handleShowNav() {
-  if (!selectArea.value) {
-    return message.warning('请选择室内导航区域！')
-  }
   soonmanager2Sync.getTopologies().then((e) => {
     if (selectAreaId.value === '1-1') {
       ssp.createTopology(e[9])
@@ -212,22 +204,14 @@ function handleShowNav() {
       topologies.value = ssp.getObjectById(e[8].id)
     }
   })
+}
+
+function handleShowNav() {
+  if (!selectArea.value) {
+    return message.warning('请选择室内导航区域！')
+  }
   showControlMode.value = true
-}
 
-function handleSelectPosition() {
-  showControlMode.value = false
-  showTooltip.value = false
-  showDetail.value = false
-  isPause.value = false
-  isResume.value = false
-  isPatrol.value = true
-  sliderValue.value = 0
-  patrolControls.value.stop()
-  ssp.clearTopology()
-}
-
-function handleControlNav() {
   showTooltip.value = true
   showDetail.value = true
   isPause.value = true
@@ -352,10 +336,52 @@ function handleControlNav() {
         isPause.value = false
         isResume.value = false
         isPatrol.value = true
+        if (selectAreaId.value === '1-1') {
+          ssp.setCameraViewpoint({
+            position: {
+              x: 145.16795460335464,
+              y: -7.22705417305863,
+              z: -16.62881584338346,
+            },
+            target: {
+              x: 126.3624828116591,
+              y: -13.25869337658246,
+              z: -14.258049285671024,
+            },
+          })
+        }
+        if (selectAreaId.value === '2-1') {
+          ssp.setCameraViewpoint({
+            position: {
+              x: 121.55973529311572,
+              y: -13.064799292945526,
+              z: -5.675493261625442,
+            },
+            target: {
+              x: 122.04494405116866,
+              y: -13.125915014003327,
+              z: -5.753144619419772,
+            },
+          })
+        }
       },
     },
   )
 }
+
+function handleSelectPosition() {
+  showControlMode.value = false
+  showTooltip.value = false
+  showDetail.value = false
+  isPause.value = false
+  isResume.value = false
+  isPatrol.value = true
+  sliderValue.value = 0
+  patrolControls.value.stop()
+  ssp.clearTopology()
+}
+
+function handleControlNav() {}
 
 function handlePauseNav() {
   isPause.value = false
@@ -471,8 +497,19 @@ function handleUpdateSliderValue(val) {
         align-items: center;
         font-size: 12px;
         padding: 0 10px;
+        position: relative;
         &.active {
           background: rgba(163, 208, 255, 0.25);
+        }
+        .components-area-checkbox {
+          position: absolute;
+          right: 20px;
+          width: 15px;
+          height: 12px;
+          &.bg {
+            background: url('/public/images/tick.png') no-repeat;
+            background-size: 100%;
+          }
         }
       }
     }
