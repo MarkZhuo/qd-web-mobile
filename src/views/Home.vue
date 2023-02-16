@@ -80,11 +80,36 @@
           </div>
           <div class="controller">
             <n-space justify="space-around">
-              <n-button type="info" @click="handleBack">后退10米</n-button>
-              <n-button type="info" v-if="isPatrol" @click="handleControlNav">开始导航</n-button>
-              <n-button type="info" v-if="!isResume && isPause" @click="handlePauseNav">暂停导航</n-button>
-              <n-button type="info" v-if="isResume && !isPause" @click="handleResumeNav">继续导航</n-button>
-              <n-button type="info" @click="handleForward">前进10米</n-button>
+              <n-button class="forward-back-btn" text-color="#3EA7FE" @click="handleBack"
+                ><template #icon>
+                  <n-icon>
+                    <i class="iconfont icon-pause1"></i>
+                  </n-icon> </template
+                >后退10米</n-button
+              >
+              <n-button class="control-btn" color="#38A5FF" v-if="isPatrol" @click="handleControlNav"
+                >开始导航</n-button
+              >
+              <n-button class="control-btn" color="#38A5FF" v-if="!isResume && isPause" @click="handlePauseNav"
+                ><template #icon>
+                  <n-icon>
+                    <i class="iconfont icon-pause"></i>
+                  </n-icon> </template
+                >暂停导航</n-button
+              >
+              <n-button class="control-btn" color="#38A5FF" v-if="isResume && !isPause" @click="handleResumeNav"
+                ><template #icon>
+                  <n-icon>
+                    <i class="iconfont icon-start"></i>
+                  </n-icon> </template
+                >继续导航</n-button
+              >
+              <n-button class="forward-back-btn" text-color="#3EA7FE" @click="handleForward"
+                >前进10米<template #icon>
+                  <n-icon>
+                    <i class="iconfont icon-front"></i>
+                  </n-icon> </template
+              ></n-button>
             </n-space>
           </div>
         </div>
@@ -101,7 +126,7 @@ export default {
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
-import { NSlider, NSpace, NButton, NSelect, NIconWrapper, NCheckbox, useMessage } from 'naive-ui'
+import { NSlider, NSpace, NButton, NSelect, NIconWrapper, NIcon, NCheckbox, useMessage } from 'naive-ui'
 import Sspx from '@soonspacejs/plugin-sspx'
 import Soonmanager2SyncPlugin from '@soonspacejs/plugin-soonmanager2-sync'
 import PatrolControlsPlugin from '@soonspacejs/plugin-patrol-controls'
@@ -220,7 +245,7 @@ function handleShowNav() {
   let path = {}
   const options = {
     flyToStartPoint: true,
-    eyeHeight: 1.7,
+    eyeHeight: 1.2,
     naviSpeed: 0.003,
     rotateSpeed: 0.5,
   }
@@ -594,7 +619,7 @@ function handleUpdateSliderValue(val) {
   }
   .soonspace-area {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 185px);
     position: absolute;
     top: 0;
   }
@@ -797,6 +822,23 @@ function handleUpdateSliderValue(val) {
         }
         .controller {
           margin-top: 20px;
+          :deep(.control-btn) {
+            background: linear-gradient(315deg, #38a5ff 0%, #98c9fa 100%);
+            border-radius: 8px;
+          }
+          :deep(.forward-back-btn) {
+            border-radius: 8px;
+            border: 1px solid #3da7ff;
+            .n-button__icon {
+              margin-top: 1px;
+              .icon-pause1 {
+                font-size: 12px;
+              }
+              .icon-front {
+                font-size: 12px;
+              }
+            }
+          }
         }
       }
     }
