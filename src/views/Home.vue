@@ -822,6 +822,9 @@ function handleUpdateSliderValue(val) {
         }
         .controller {
           margin-top: 20px;
+          :deep(.n-space) {
+            gap: 0 !important;
+          }
           :deep(.control-btn) {
             background: linear-gradient(315deg, #38a5ff 0%, #98c9fa 100%);
             border-radius: 8px;
