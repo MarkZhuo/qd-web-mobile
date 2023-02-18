@@ -246,7 +246,7 @@ function handleShowNav() {
   const options = {
     flyToStartPoint: true,
     eyeHeight: 1.2,
-    naviSpeed: 0.003,
+    naviSpeed: 0.005,
     rotateSpeed: 0.5,
   }
   path = topologies.value
@@ -655,7 +655,7 @@ function handleUpdateSliderValue(val) {
     .components {
       padding-top: 30px;
       &-name {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: bold;
         color: #000000;
         position: relative;
@@ -676,7 +676,7 @@ function handleUpdateSliderValue(val) {
         display: flex;
         height: 35px;
         align-items: center;
-        font-size: 12px;
+        font-size: 14px;
         padding: 0 10px;
         position: relative;
         &.active {

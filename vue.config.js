@@ -1,4 +1,4 @@
-const mobilePort = '8891'
+const mobilePort = '8080'
 
 module.exports = {
   devServer: {
