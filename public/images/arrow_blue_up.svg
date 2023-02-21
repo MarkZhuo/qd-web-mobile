@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="23px" viewBox="0 0 21 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrow_green_up_1备份 2</title>
+    <defs>
+        <linearGradient x1="50%" y1="1.58853598%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3096EF" offset="0%"></stop>
+            <stop stop-color="#3AA6FF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="arrow_green_up_1备份-2" fill="url(#linearGradient-1)" fill-rule="nonzero" transform="translate(10.453476, 11.763097) scale(-1, -1) rotate(180.000000) translate(-10.453476, -11.763097) " points="10.4202197 0.4 20.8404394 8.015492 20.906952 23.1261943 10.4867323 16.0340733 0.0665126072 23.1261943 -5.65010259e-19 8.015492"></polygon>
+    </g>
+</svg>

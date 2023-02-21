@@ -131,7 +131,7 @@ import Sspx from '@soonspacejs/plugin-sspx'
 import Soonmanager2SyncPlugin from '@soonspacejs/plugin-soonmanager2-sync'
 import PatrolControlsPlugin from '@soonspacejs/plugin-patrol-controls'
 import { More } from '@icon-park/vue-next'
-import { Navigations } from './constant'
+import { Navigations, navLine_1, navLine_2 } from './constant'
 
 const options = {
   // background: {
@@ -216,16 +216,42 @@ function handleModelClick(params) {
   console.log(params)
 }
 
-function handleSelectArea(item) {
+async function handleSelectArea(item) {
+  await ssp.clearTopology()
   selectArea.value = item
   selectAreaId.value = item.id
   soonmanager2Sync.getTopologies().then((e) => {
+    console.log(e)
     if (selectAreaId.value === '1-1') {
-      ssp.createTopology(e[9])
+      const lineNode = {
+        ...e[9],
+        linkColor: '#F0F8FF',
+        linkWidth: 0,
+        nodeColor: '#39A5FE',
+        nodeRadius: 0.06,
+      }
+      console.log(lineNode)
+      ssp.createTopology(lineNode)
+      navLine_1.map(async (node) => {
+        console.log(node)
+        await ssp.createTopology(node)
+      })
       topologies.value = ssp.getObjectById(e[9].id)
     }
     if (selectAreaId.value === '2-1') {
-      ssp.createTopology(e[8])
+      const lineNode = {
+        ...e[8],
+        linkColor: '#F0F8FF',
+        linkWidth: 0,
+        nodeColor: '#39A5FE',
+        nodeRadius: 0.06,
+      }
+      console.log(lineNode)
+      ssp.createTopology(lineNode)
+      navLine_2.map(async (node) => {
+        console.log(node)
+        await ssp.createTopology(node)
+      })
       topologies.value = ssp.getObjectById(e[8].id)
     }
   })
