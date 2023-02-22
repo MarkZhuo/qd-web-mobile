@@ -272,7 +272,7 @@ function handleShowNav() {
   const options = {
     flyToStartPoint: true,
     eyeHeight: 1.2,
-    naviSpeed: 0.005,
+    naviSpeed: 0.003,
     rotateSpeed: 0.5,
   }
   path = topologies.value
