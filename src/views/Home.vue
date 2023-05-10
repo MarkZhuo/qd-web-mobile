@@ -14,7 +14,7 @@
           :key="v.id"
           @click="handleSelectArea(v)"
         >
-          <div class="components-area-name" v-show="v.query === query">{{ v.name }}</div>
+          <div class="components-area-name">{{ v.name }}</div>
           <div class="components-area-checkbox" :class="{ bg: selectAreaId === v?.id }"></div>
         </div>
       </div>
@@ -176,7 +176,8 @@ const markImg = ref('/images/forward.png')
 const query = ref('')
 
 onMounted(() => {
-  query.value = window.location.href.includes('l=1')
+  query.value = window.location.href
+  console.log(query.value)
   ssp = Sspx.get('qdSsp')
   soonmanager2Sync = ssp.registerPlugin(Soonmanager2SyncPlugin, 'soonmanager2Sync')
   ssp.setModelDracoDecoderPath('/draco/')
