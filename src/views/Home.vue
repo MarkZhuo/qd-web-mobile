@@ -1,12 +1,5 @@
 <template>
   <div class="main">
-    <!--    <div class="top">-->
-    <!--      <span class="iconfont icon-guanbi" @click="showControlMode = false"></span>-->
-    <!--      <span class="title">青岛智慧地铁室内导航</span>-->
-    <!--      <span class="more">-->
-    <!--        <more theme="outline" size="24" fill="#333" />-->
-    <!--      </span>-->
-    <!--    </div>-->
     <div class="nav-indoor" :class="{ hidden: !showControlMode }">
       <div class="top">
         <div class="title">室内导航</div>
@@ -21,7 +14,7 @@
           :key="v.id"
           @click="handleSelectArea(v)"
         >
-          <div class="components-area-name">{{ v.name }}</div>
+          <div class="components-area-name" v-show="v.query === query">{{ v.name }}</div>
           <div class="components-area-checkbox" :class="{ bg: selectAreaId === v?.id }"></div>
         </div>
       </div>
@@ -180,12 +173,15 @@ const formatTooltip = (value) => {
 const guideDetail = ref('')
 const showDetail = ref(false)
 const markImg = ref('/images/forward.png')
+const query = ref('')
 
 onMounted(() => {
+  query.value = window.location.href.includes('l=1')
   ssp = Sspx.get('qdSsp')
   soonmanager2Sync = ssp.registerPlugin(Soonmanager2SyncPlugin, 'soonmanager2Sync')
   ssp.setModelDracoDecoderPath('/draco/')
   soonmanager2Sync.setPath('/soonspace')
+  // soonmanager2Sync.setPath('https://jsafsss.oss-cn-beijing.aliyuncs.com/qdbim/soonspace')
   patrolControls.value = ssp.registerPlugin(PatrolControlsPlugin, 'patrolControls')
   /**
    * 加载场景
