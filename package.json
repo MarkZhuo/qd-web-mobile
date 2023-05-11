@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@icon-park/vue-next": "^1.4.2",
-    "@soonspacejs/plugin-patrol-controls": "^2.6.1",
+    "@soonspacejs/plugin-patrol-controls": "^2.6.20",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.0-0",
@@ -18,10 +18,10 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
-    "@soonspacejs/plugin-clipping-controls": "^2.6.1",
-    "@soonspacejs/plugin-heat-map": "^2.6.1",
-    "@soonspacejs/plugin-soonmanager2-sync": "^2.6.1",
-    "@soonspacejs/plugin-sspx": "^2.6.1",
+    "@soonspacejs/plugin-clipping-controls": "^2.6.20",
+    "@soonspacejs/plugin-heat-map": "^2.6.20",
+    "@soonspacejs/plugin-soonmanager2-sync": "^2.6.20",
+    "@soonspacejs/plugin-sspx": "^2.6.20",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
@@ -33,7 +33,7 @@
     "prettier": "^2.2.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "soonspacejs": "^2.6.1",
+    "soonspacejs": "^2.6.20",
     "three": "^0.149.0",
     "vue-soonspace": "^2.3.4"
   },
