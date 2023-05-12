@@ -1,7 +1,7 @@
 export const Navigations = [
   {
-    id: 'zhantai',
-    name: '站台',
+    id: '1',
+    name: 'A出入口',
     _query: 'l=1',
     areas: [
       {
@@ -10,50 +10,56 @@ export const Navigations = [
       },
       {
         id: '1-2',
-        name: 'A-女卫生间',
-      },
-      {
-        id: '1-3',
-        name: 'C-女卫生间',
-      },
-      {
-        id: '1-4',
-        name: 'D-女卫生间',
-      },
-      {
-        id: '1-5',
-        name: 'C-男卫生间',
-      },
-      {
-        id: '1-6',
-        name: 'A-男卫生间',
-      },
-      {
-        id: '1-7',
-        name: '站台-A出入口',
-      },
-      {
-        id: '1-8',
-        name: '站台-C出入口',
+        name: '女卫生间',
       },
     ],
   },
   {
-    id: 'zhanting',
-    name: '站厅',
+    id: '2',
+    name: 'C出入口',
     _query: 'l=2',
     areas: [
       {
         id: '2-1',
-        name: 'D出入口',
+        name: '男卫生间',
       },
       {
         id: '2-2',
+        name: '女卫生间',
+      },
+    ],
+  },
+  {
+    id: '3',
+    name: 'D出入口',
+    _query: 'l=3',
+    areas: [
+      {
+        id: '3-1',
+        name: '男卫生间',
+      },
+      {
+        id: '3-2',
+        name: '女卫生间',
+      },
+    ],
+  },
+  {
+    id: '4',
+    name: '站台',
+    _query: 'l=4',
+    areas: [
+      {
+        id: '4-1',
+        name: 'A出入口',
+      },
+      {
+        id: '4-2',
         name: 'C出入口',
       },
       {
-        id: '2-3',
-        name: 'A出入口',
+        id: '4-3',
+        name: 'D出入口',
       },
     ],
   },

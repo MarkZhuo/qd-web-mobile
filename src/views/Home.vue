@@ -5,7 +5,7 @@
         <div class="title">室内导航</div>
         <div class="title">{{ selectArea?.name ?? '请选择您的目的地' }}</div>
       </div>
-      <div class="components" v-for="item in Navigations" :key="item.id">
+      <div class="components" v-for="item in Navigations" :key="item.id" v-show="query.includes(item._query)">
         <div class="components-name">{{ item.name }}</div>
         <div
           :class="{ active: selectAreaId === v?.id }"
@@ -187,6 +187,7 @@ const markImg = ref('/images/forward.png')
 const query = ref('')
 const manId = '549XO4ZWYKM7' // 男性人物
 const femaleId = '549XO4ZWYKM6' // 女性人物
+const SFCId = '549XO4ZRDWRQ' // 消防车
 
 onMounted(() => {
   query.value = window.location.href
@@ -218,6 +219,7 @@ onMounted(() => {
     })
     ssp.removeObjectById(manId)
     ssp.removeObjectById(femaleId)
+    ssp.removeObjectById(SFCId)
   })
 })
 
@@ -235,7 +237,7 @@ async function handleSelectArea(item) {
   selectAreaId.value = item.id
   soonmanager2Sync.getTopologies().then((e) => {
     console.log(e)
-    if (selectAreaId.value === '1-1') {
+    if (selectAreaId.value === '3-1') {
       const lineNode = {
         ...e[2],
         linkColor: '#F0F8FF',
@@ -251,7 +253,7 @@ async function handleSelectArea(item) {
       })
       topologies.value = ssp.getObjectById(e[2].id)
     }
-    if (selectAreaId.value === '2-1') {
+    if (selectAreaId.value === '4-3') {
       const lineNode = {
         ...e[10],
         linkColor: '#F0F8FF',
@@ -268,114 +270,72 @@ async function handleSelectArea(item) {
       topologies.value = ssp.getObjectById(e[10].id)
     }
     if (selectAreaId.value === '1-2') {
-      const lineNode = {
+      ssp.createTopology({
         ...e[15],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_3.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[15].id)
     }
-    if (selectAreaId.value === '1-3') {
-      const lineNode = {
+    if (selectAreaId.value === '2-2') {
+      ssp.createTopology({
         ...e[16],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_4.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[16].id)
     }
-    if (selectAreaId.value === '1-4') {
-      const lineNode = {
+    if (selectAreaId.value === '3-2') {
+      ssp.createTopology({
         ...e[17],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_5.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[17].id)
     }
-    if (selectAreaId.value === '1-5') {
-      const lineNode = {
+    if (selectAreaId.value === '2-1') {
+      ssp.createTopology({
         ...e[13],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_6.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[13].id)
     }
-    if (selectAreaId.value === '1-6') {
-      const lineNode = {
+    if (selectAreaId.value === '1-1') {
+      ssp.createTopology({
         ...e[14],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_7.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[14].id)
     }
-    if (selectAreaId.value === '1-7') {
-      const lineNode = {
+    if (selectAreaId.value === '4-1') {
+      ssp.createTopology({
         ...e[11],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_8.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[11].id)
     }
-    if (selectAreaId.value === '1-8') {
-      const lineNode = {
+    if (selectAreaId.value === '4-2') {
+      ssp.createTopology({
         ...e[12],
+        imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
-        linkWidth: 0,
         nodeColor: '#39A5FE',
-        nodeRadius: 0.06,
-      }
-      console.log(lineNode)
-      ssp.createTopology(lineNode)
-      navLine_9.map(async (node) => {
-        console.log(node)
-        await ssp.createTopology(node)
+        animation: true,
       })
       topologies.value = ssp.getObjectById(e[12].id)
     }
@@ -410,87 +370,87 @@ function handleShowNav() {
       onUpdate: (realTimePosition, realTimeRotation, nextNode, nextDistance) => {
         // console.log(nextNode)
         // console.log(nextDistance)
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node5') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node7') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node8') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node11') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node12') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node12') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node3') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -530,243 +490,243 @@ function handleShowNav() {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node1') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node1') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node2') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node7') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -788,7 +748,7 @@ function handleShowNav() {
         isPause.value = false
         isResume.value = false
         isPatrol.value = true
-        if (selectAreaId.value === '1-1') {
+        if (selectAreaId.value === '3-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 145.16795460335464,
@@ -802,7 +762,7 @@ function handleShowNav() {
             },
           })
         }
-        if (selectAreaId.value === '2-1') {
+        if (selectAreaId.value === '4-3') {
           ssp.setCameraViewpoint({
             position: {
               x: 121.55973529311572,
@@ -816,7 +776,7 @@ function handleShowNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-2' || selectAreaId.value === '1-6') {
+        if (selectAreaId.value === '1-2' || selectAreaId.value === '1-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 77.26781371046668,
@@ -830,7 +790,7 @@ function handleShowNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-3' || selectAreaId.value === '1-5') {
+        if (selectAreaId.value === '2-2' || selectAreaId.value === '2-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 146.7311307807873,
@@ -844,7 +804,7 @@ function handleShowNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-4') {
+        if (selectAreaId.value === '3-2') {
           ssp.setCameraViewpoint({
             position: {
               x: 77.12294407237552,
@@ -858,7 +818,7 @@ function handleShowNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-7' || selectAreaId.value === '1-8') {
+        if (selectAreaId.value === '4-1' || selectAreaId.value === '4-2') {
           ssp.setCameraViewpoint({
             position: {
               x: 79.35992242678351,
@@ -912,87 +872,87 @@ function handleControlNav() {
       onUpdate: (realTimePosition, realTimeRotation, nextNode, nextDistance) => {
         // console.log(nextNode)
         // console.log(nextDistance)
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node5') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node7') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node8') {
           guideDetail.value = ''
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node11') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-1' && nextNode.name === 'node12') {
+        if (selectAreaId.value === '3-1' && nextNode.name === 'node12') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node3') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '4-3' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -1032,243 +992,243 @@ function handleControlNav() {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-3' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-4' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '3-2' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-5' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node1') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node4') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node5') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-6' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '1-1' && nextNode.name === 'node9') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node1') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node2') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-7' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-1' && nextNode.name === 'node7') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node0') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node0') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node1') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node1') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node2') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node2') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node3') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node3') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node4') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node4') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node5') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node5') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node6') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node6') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node7') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node7') {
           guideDetail.value = ``
           markImg.value = '/images/forward.png'
         }
-        if (selectAreaId.value === '1-8' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '4-2' && nextNode.name === 'node8') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -1290,7 +1250,7 @@ function handleControlNav() {
         isPause.value = false
         isResume.value = false
         isPatrol.value = true
-        if (selectAreaId.value === '1-1') {
+        if (selectAreaId.value === '3-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 145.16795460335464,
@@ -1304,7 +1264,7 @@ function handleControlNav() {
             },
           })
         }
-        if (selectAreaId.value === '2-1') {
+        if (selectAreaId.value === '4-3') {
           ssp.setCameraViewpoint({
             position: {
               x: 121.55973529311572,
@@ -1318,7 +1278,7 @@ function handleControlNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-2' || selectAreaId.value === '1-6') {
+        if (selectAreaId.value === '1-2' || selectAreaId.value === '1-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 77.26781371046668,
@@ -1332,7 +1292,7 @@ function handleControlNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-3' || selectAreaId.value === '1-5') {
+        if (selectAreaId.value === '2-2' || selectAreaId.value === '2-1') {
           ssp.setCameraViewpoint({
             position: {
               x: 146.7311307807873,
@@ -1346,7 +1306,7 @@ function handleControlNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-4') {
+        if (selectAreaId.value === '3-2') {
           ssp.setCameraViewpoint({
             position: {
               x: 77.12294407237552,
@@ -1360,7 +1320,7 @@ function handleControlNav() {
             },
           })
         }
-        if (selectAreaId.value === '1-7' || selectAreaId.value === '1-8') {
+        if (selectAreaId.value === '4-1' || selectAreaId.value === '4-2') {
           ssp.setCameraViewpoint({
             position: {
               x: 79.35992242678351,
