@@ -509,26 +509,38 @@ function handleShowNav() {
           markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node5') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
-          markImg.value = '/images/turn_left.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node6') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
-          markImg.value = '/images/turn_right.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node7') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node12') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node13') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -597,8 +609,8 @@ function handleShowNav() {
           markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
-          markImg.value = '/images/turn_left.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
@@ -609,14 +621,26 @@ function handleShowNav() {
           markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
-          markImg.value = '/images/turn_right.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node12') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node13') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -1019,26 +1043,38 @@ function handleControlNav() {
           markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node5') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
-          markImg.value = '/images/turn_left.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node6') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
-          markImg.value = '/images/turn_right.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-2' && nextNode.name === 'node7') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node8') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node9') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node12') {
           guideDetail.value = `${parseInt(nextDistance)}米后 左转`
           markImg.value = '/images/turn_left.png'
         }
-        if (selectAreaId.value === '2-2' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-2' && nextNode.name === 'node13') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
@@ -1107,8 +1143,8 @@ function handleControlNav() {
           markImg.value = '/images/turn_right.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node5') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
-          markImg.value = '/images/turn_left.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node6') {
           guideDetail.value = ``
@@ -1119,14 +1155,26 @@ function handleControlNav() {
           markImg.value = '/images/turn_left.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node8') {
-          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
-          markImg.value = '/images/turn_right.png'
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
         }
         if (selectAreaId.value === '2-1' && nextNode.name === 'node9') {
+          guideDetail.value = ``
+          markImg.value = '/images/forward.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 左转`
+          markImg.value = '/images/turn_left.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node11') {
           guideDetail.value = `${parseInt(nextDistance)}米后 右转`
           markImg.value = '/images/turn_right.png'
         }
-        if (selectAreaId.value === '2-1' && nextNode.name === 'node10') {
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node12') {
+          guideDetail.value = `${parseInt(nextDistance)}米后 右转`
+          markImg.value = '/images/turn_right.png'
+        }
+        if (selectAreaId.value === '2-1' && nextNode.name === 'node13') {
           guideDetail.value = `${parseInt(nextDistance)}米后 抵达目的地`
           markImg.value = '/images/forward.png'
         }
