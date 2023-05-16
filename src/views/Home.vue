@@ -5,7 +5,7 @@
         <div class="title">室内导航</div>
         <div class="title">{{ selectArea?.name ?? '请选择您的目的地' }}</div>
       </div>
-      <div class="components" v-for="item in Navigations" :key="item.id">
+      <div class="components" v-for="item in Navigations" :key="item.id" v-show="item._query.includes(query)">
         <div class="components-name">{{ item.name }}</div>
         <div
           :class="{ active: selectAreaId === v?.id }"
@@ -241,13 +241,13 @@ async function handleSelectArea(item) {
     console.log(e)
     if (selectAreaId.value === '3-1') {
       ssp.createTopology({
-        ...e[16],
+        ...e[15],
         imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
         nodeColor: '#39A5FE',
         animation: true,
       })
-      topologies.value = ssp.getObjectById(e[16].id)
+      topologies.value = ssp.getObjectById(e[15].id)
     }
     if (selectAreaId.value === '4-3') {
       ssp.createTopology({
@@ -261,13 +261,13 @@ async function handleSelectArea(item) {
     }
     if (selectAreaId.value === '1-2') {
       ssp.createTopology({
-        ...e[17],
+        ...e[16],
         imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
         nodeColor: '#39A5FE',
         animation: true,
       })
-      topologies.value = ssp.getObjectById(e[17].id)
+      topologies.value = ssp.getObjectById(e[16].id)
     }
     if (selectAreaId.value === '2-2') {
       ssp.createTopology({
@@ -311,6 +311,16 @@ async function handleSelectArea(item) {
     }
     if (selectAreaId.value === '4-1') {
       ssp.createTopology({
+        ...e[17],
+        imgUrl: '/images/arrow_blue_up.svg',
+        linkColor: '#F0F8FF',
+        nodeColor: '#39A5FE',
+        animation: true,
+      })
+      topologies.value = ssp.getObjectById(e[17].id)
+    }
+    if (selectAreaId.value === '4-2') {
+      ssp.createTopology({
         ...e[14],
         imgUrl: '/images/arrow_blue_up.svg',
         linkColor: '#F0F8FF',
@@ -318,16 +328,6 @@ async function handleSelectArea(item) {
         animation: true,
       })
       topologies.value = ssp.getObjectById(e[14].id)
-    }
-    if (selectAreaId.value === '4-2') {
-      ssp.createTopology({
-        ...e[15],
-        imgUrl: '/images/arrow_blue_up.svg',
-        linkColor: '#F0F8FF',
-        nodeColor: '#39A5FE',
-        animation: true,
-      })
-      topologies.value = ssp.getObjectById(e[15].id)
     }
   })
 }
@@ -846,16 +846,8 @@ function handleShowNav() {
         }
         if (selectAreaId.value === '4-1' || selectAreaId.value === '4-2') {
           ssp.setCameraViewpoint({
-            position: {
-              x: 79.35992242678351,
-              y: -13.289355465153603,
-              z: -8.239116627542822,
-            },
-            target: {
-              x: 114.94722111702492,
-              y: -22.59626150789076,
-              z: -9.629079583464932,
-            },
+            position: { x: 150.61457950342637, y: -13.71465427987354, z: -7.908910774017114 },
+            target: { x: 126.65206087640475, y: -23.020360220029637, z: -7.973867193373726 },
           })
         }
       },
@@ -1380,16 +1372,8 @@ function handleControlNav() {
         }
         if (selectAreaId.value === '4-1' || selectAreaId.value === '4-2') {
           ssp.setCameraViewpoint({
-            position: {
-              x: 79.35992242678351,
-              y: -13.289355465153603,
-              z: -8.239116627542822,
-            },
-            target: {
-              x: 114.94722111702492,
-              y: -22.59626150789076,
-              z: -9.629079583464932,
-            },
+            position: { x: 150.61457950342637, y: -13.71465427987354, z: -7.908910774017114 },
+            target: { x: 126.65206087640475, y: -23.020360220029637, z: -7.973867193373726 },
           })
         }
       },
