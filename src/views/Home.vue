@@ -5,7 +5,7 @@
         <div class="title">室内导航</div>
         <div class="title">{{ selectArea?.name ?? '请选择您的目的地' }}</div>
       </div>
-      <div class="components" v-for="item in Navigations" :key="item.id" v-show="item._query.includes(query)">
+      <div class="components" v-for="item in Navigations" :key="item.id" v-show="query.includes(item._query)">
         <div class="components-name">{{ item.name }}</div>
         <div
           :class="{ active: selectAreaId === v?.id }"
@@ -185,9 +185,9 @@ const guideDetail = ref('')
 const showDetail = ref(false)
 const markImg = ref('/images/forward.png')
 const query = ref('')
-const manId = '549XO4ZWYKM7' // 男性人物
-const femaleId = '549XO4ZWYKM6' // 女性人物
-const SFCId = '549XO4ZRDWRQ' // 消防车
+const manId = '5ATFS3YFPE1C' // 男性人物
+const femaleId = '5ATFS3YFPE1B' // 女性人物
+const SFCId = '5ATFS3YCWKCW' // 消防车
 
 onMounted(() => {
   query.value = window.location.href
